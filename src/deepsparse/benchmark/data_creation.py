@@ -14,7 +14,6 @@
 
 import glob
 import logging
-import random
 import string
 from os import path
 from typing import Dict, List, Tuple
@@ -23,6 +22,7 @@ import numpy
 
 from deepsparse import Pipeline
 from deepsparse.benchmark.config import PipelineBenchmarkConfig
+import secrets
 
 
 __all__ = [
@@ -83,13 +83,12 @@ def get_files_with_suffixes(
             files.append(f)
     if len(files) < num_files:
         raise Exception("Not enough images found in {}".format(folder))
-    return random.sample(files, num_files)
+    return secrets.SystemRandom().sample(files, num_files)
 
 
 def generate_random_sentence(string_length: int, avg_word_length: int = 5):
-    random_chars = "".join(random.choices(string.ascii_letters, k=string_length))
-    space_locations = random.sample(
-        range(string_length), int(string_length / avg_word_length)
+    random_chars = "".join(secrets.SystemRandom().choices(string.ascii_letters, k=string_length))
+    space_locations = secrets.SystemRandom().sample(range(string_length), int(string_length / avg_word_length)
     )
     random_chars = list(random_chars)
     for loc in space_locations:

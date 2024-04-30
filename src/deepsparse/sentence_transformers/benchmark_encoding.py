@@ -13,19 +13,18 @@
 # limitations under the License.
 
 import argparse
-import random
 import string
 from time import perf_counter
 
 from deepsparse.sentence_transformers import DeepSparseSentenceTransformer
 from sentence_transformers import SentenceTransformer
+import secrets
 
 
 def generate_random_sentence(length):
     # Generate a random sentence of a given length.
     return "".join(
-        random.choices(
-            string.ascii_letters
+        secrets.SystemRandom().choices(string.ascii_letters
             + string.digits
             + string.punctuation
             + string.whitespace,
