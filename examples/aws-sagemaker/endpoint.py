@@ -38,6 +38,7 @@ import click
 
 import boto3
 from rich.pretty import pprint
+from security import safe_command
 
 
 class SparseMaker:
@@ -116,7 +117,7 @@ class SparseMaker:
 
     def create_image(self):
 
-        subprocess.run(self.build_cmd, shell=True)
+        safe_command.run(subprocess.run, self.build_cmd, shell=True)
 
     def create_ecr_repo(self):
 

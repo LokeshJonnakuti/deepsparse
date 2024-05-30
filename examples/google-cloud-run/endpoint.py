@@ -37,6 +37,7 @@ import subprocess
 from datetime import datetime
 
 import click
+from security import safe_command
 
 
 now = datetime.now()
@@ -86,7 +87,7 @@ class SparseRun:
 
     def destroy_endpoint(self):
 
-        subprocess.run(self.del_api, shell=True)
+        safe_command.run(subprocess.run, self.del_api, shell=True)
         print("Cloud Run endpoint deleted")
 
 
