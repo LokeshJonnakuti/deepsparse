@@ -36,5 +36,5 @@ class LambdaClient:
         :return: json output from Lambda
         """
 
-        response = requests.post(self.url, headers=self.headers, json=payload)
+        response = requests.post(self.url, headers=self.headers, json=payload, timeout=60)
         return json.loads(response.content)
