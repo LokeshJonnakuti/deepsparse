@@ -33,6 +33,6 @@ class CloudRunClient:
         Client for NLP tasks.
         """
 
-        response = requests.post(self.url, headers=self.headers, json=payload)
+        response = requests.post(self.url, headers=self.headers, json=payload, timeout=60)
 
         return json.loads(response.content)

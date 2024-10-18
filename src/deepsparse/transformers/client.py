@@ -43,5 +43,5 @@ class PipelineClient:
             given input(s)
         """
         # Send data to server for inference
-        response = requests.post(self._url, json=kwargs)
+        response = requests.post(self._url, json=kwargs, timeout=60)
         return response.json()

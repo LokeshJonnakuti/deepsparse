@@ -147,10 +147,10 @@ def _update_endpoints(
 
     for endpoint in removed:
         _LOGGER.info(f"Requesting removal of endpoint '{endpoint.route}'")
-        requests.delete(url, json=endpoint.dict()).raise_for_status()
+        requests.delete(url, json=endpoint.dict(), timeout=60).raise_for_status()
 
     for endpoint in added:
         _LOGGER.info(f"Requesting addition of endpoint '{endpoint.route}'")
-        requests.post(url, json=endpoint.dict()).raise_for_status()
+        requests.post(url, json=endpoint.dict(), timeout=60).raise_for_status()
 
     return added, removed
