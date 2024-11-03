@@ -18,7 +18,6 @@ Helpers and Utilities for YOLO
 import functools
 import itertools
 import logging
-import random
 import time
 from tempfile import NamedTemporaryFile
 from typing import List, Optional, Tuple, Union
@@ -32,6 +31,7 @@ import torch
 from deepsparse.utils.onnx import save_onnx_to_temp_files
 from deepsparse.yolo.schemas import YOLOOutput
 from sparsezoo.utils import save_onnx
+import secrets
 
 
 try:
@@ -60,7 +60,7 @@ _YOLO_DEFAULT_ANCHOR_GRIDS = [
 @functools.lru_cache(maxsize=None)
 def _get_color(label):
     # cache color lookups
-    return random.choice(_YOLO_CLASS_COLORS)
+    return secrets.choice(_YOLO_CLASS_COLORS)
 
 
 class YoloPostprocessor:
